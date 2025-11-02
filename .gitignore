@@ -1,0 +1,105 @@
+# ==========================================
+# 🐍 Python / FastAPI / Poetry Project
+# ==========================================
+
+# --- Byte-compiled / optimized / DLL files ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --- Virtual environments ---
+# (Poetry manages these in AppData or ~/.cache, but just in case)
+.venv/
+venv/
+env/
+env.bak/
+.venv.bak/
+
+# --- Poetry environment cache ---
+# Poetry keeps venvs in user cache, not in project dir,
+# so normally no need, but included for safety
+poetry.lock
+# Uncomment below if you don't want to track dependency lockfile
+# (not recommended for teamwork)
+# poetry.lock
+
+# --- PyInstaller / Build ---
+build/
+dist/
+*.spec
+
+# --- Unit test / coverage reports ---
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+
+# --- Logs and runtime data ---
+*.log
+*.pid
+*.seed
+*.tmp
+*.bak
+
+# --- IDE / Editor settings ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# --- OS / System files ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Environment variables files ---
+.env
+.env.*
+!.env.example
+
+# --- Local settings ---
+*.local
+*.cfg
+*.ini
+
+# --- Temporary files ---
+*.tmp
+*.temp
+*.bak
+*.old
+*.orig
+
+# --- Docker ---
+Dockerfile
+docker-compose.yml
+*.tar
+*.img
+
+# --- Database / data dumps ---
+*.db
+*.sqlite3
+*.sql
+*.csv
+
+# --- Mypy / Pyright / Pyre ---
+.mypy_cache/
+.dmypy.json
+.pyre/
+.pytype/
+.pyright/
+
+# --- Jupyter ---
+.ipynb_checkpoints
+
+# --- FastAPI / Uvicorn ---
+# (No specific folders, but include logs)
+*.log
+uvicorn.log
