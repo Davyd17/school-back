@@ -15,7 +15,6 @@ class RoleCrudUseCase:
     
     def get_all(self) -> List[Role]:
         roles_db = self.repository.get_all()
-        #print(roles_db)
         return roles_db
 
     def update(self, id: int, role: Role) -> Role:
