@@ -1,10 +1,10 @@
 from typing import List
-from domain.gateway.role_gateway import RoleGateway
+from domain.gateway.generic_crud_gateway import GenericCrudGateway
 from domain.model.entities.role import Role
 
 
 class RoleCrudUseCase:
-    def __init__(self, repository: RoleGateway):
+    def __init__(self, repository: GenericCrudGateway[Role]):
         self.repository = repository
 
     def create(self, role: Role) -> Role:

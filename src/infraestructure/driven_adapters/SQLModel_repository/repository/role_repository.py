@@ -1,12 +1,12 @@
 from typing import List, Optional
 
 from sqlmodel import Session, select
-from domain.gateway.role_gateway import RoleGateway
+from domain.gateway.generic_crud_gateway import GenericCrudGateway
 from domain.model.entities.role import Role
 from ..mapper.role_model_mapper import RoleModelMapper
 from ..model.role_model import RoleModel
 
-class RoleRepository(RoleGateway):
+class RoleRepository(GenericCrudGateway[Role]):
     def __init__(self, session: Session):
         self.session = session
         self.model = RoleModel
