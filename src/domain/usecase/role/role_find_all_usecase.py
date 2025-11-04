@@ -1,11 +1,11 @@
 from typing import List
 
-from domain.gateway.generic_crud_gateway import GenericCrudGateway
+from domain.gateway.role_repository_gateway import RoleRepositoryGateway
 from domain.model.entities.role import Role
 
 
 class RoleFindAllUseCase:
-    def __init__(self, repository: GenericCrudGateway[Role]):
+    def __init__(self, repository: RoleRepositoryGateway):
         self.repository = repository
 
     def execute(self) -> List[Role]:
