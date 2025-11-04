@@ -1,5 +1,6 @@
 from domain.model.entities.role import Role
-from infraestructure.driven_adapters.SQLModel_repository.model.role_model import RoleModel
+from .permission_model_mapper import PermissionModelMapper
+from ..model.role_model import RoleModel
 
 
 class RoleModelMapper:
@@ -10,7 +11,11 @@ class RoleModelMapper:
         return Role(
             id = role_model.id,
             name = role_model.name,
-            description = role_model.description
+            description = role_model.description,
+            permissions = [
+                PermissionModelMapper.to_domain(permission_model)
+                for permission_model in role_model.permissions
+            ]
         )
 
     @staticmethod
@@ -19,5 +24,9 @@ class RoleModelMapper:
         return RoleModel(
             id = role.id,
             name = role.name,
-            description = role.description
+            description = role.description,
+            permissions = [
+                PermissionModelMapper.from_domain(permission)
+                for permission in role.permissions
+            ]
         )

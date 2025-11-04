@@ -1,6 +1,5 @@
 from dataclasses import dataclass
 from typing import Optional
-from ..entities.user import User
 
 @dataclass
 class PhoneNumber:
@@ -8,4 +7,9 @@ class PhoneNumber:
     ext: Optional[int] = None
     phone: str = ""
     is_active: bool = True
-    user: Optional[User] = None
+    contact: Optional["User"] = None
+
+    def get_full_number(self) -> str:
+        if self.ext:
+            return f"+{self.ext} {self.phone}"
+        return self.phone
