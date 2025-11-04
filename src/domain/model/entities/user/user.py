@@ -15,5 +15,8 @@ class User:
     is_active: bool = True
     created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None
-    phone_numbers: List[PhoneNumber] = field(default_factory=list)
+    phone_numbers: List[PhoneNumber] | List[None] = field(default_factory=list)
     role: Optional[Role] = None
+
+    def get_full_name(self) -> str:
+        return f"{self.name} {self.last_name}"
