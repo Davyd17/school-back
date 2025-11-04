@@ -1,12 +1,12 @@
 from typing import List, Optional
 
 from sqlmodel import Session, select
-from domain.gateway.generic_crud_gateway import GenericCrudGateway
+from domain.gateway.role_repository_gateway import RoleRepositoryGateway
 from domain.model.entities.role import Role
 from ..mapper.role_model_mapper import RoleModelMapper
 from ..model.role_model import RoleModel
 
-class RoleRepository(GenericCrudGateway[Role]):
+class RoleRepository(RoleRepositoryGateway):
     def __init__(self, session: Session):
         self.session = session
         self.model = RoleModel
@@ -24,8 +24,6 @@ class RoleRepository(GenericCrudGateway[Role]):
     def get_all(self) -> List[Role]:
 
         roles_db = self.session.exec(select(RoleModel)).all()
-        print("here")
-        print(roles_db)
 
         return [RoleModelMapper.to_domain(role_db) for role_db in roles_db]
 
