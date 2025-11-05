@@ -1,8 +1,10 @@
-from email.policy import default
-from typing import Optional
+from typing import Optional, List
 
-from fastapi.datastructures import Default
-from sqlmodel import SQLModel, Field
+from sqlmodel import SQLModel, Field, Relationship
+
+from infraestructure.driven_adapters.SQLModel_repository.model.group_model import GroupModel
+from infraestructure.driven_adapters.SQLModel_repository.model.link_models.group_grade_model_link import \
+    GroupGradeModelLink
 
 
 class GradeModel(SQLModel, table=True):
@@ -10,3 +12,9 @@ class GradeModel(SQLModel, table=True):
 
     id: Optional[int] = Field(default=None, primary_key=True)
     level: str = Field(unique=True)
+
+    groups: List[GroupModel] = Relationship(
+        link_model=GroupGradeModelLink
+    )
+
+
