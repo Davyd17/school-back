@@ -20,3 +20,15 @@ class User:
 
     def get_full_name(self) -> str:
         return f"{self.name} {self.last_name}"
+
+    def split_full_name(self, fullname: str):
+        self.name = fullname.split(" ")[0]
+        self.last_name = fullname.split(" ")[1]
+
+    @staticmethod
+    def get_name_from_full_name(full_name: str) -> str:
+        return full_name.split(" ")[0]
+
+    @staticmethod
+    def get_last_name_from_full_name(full_name: str) -> str:
+        return full_name.split(" ")[1]

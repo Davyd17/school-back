@@ -4,8 +4,8 @@ from typing import Optional, List, TYPE_CHECKING
 
 from sqlmodel import SQLModel, Field, Relationship
 
-from .phone_number_model import PhoneNumberModel
-from .role_model import RoleModel
+from infraestructure.driven_adapters.SQLModel_repository.model.phone_number_model import PhoneNumberModel
+from infraestructure.driven_adapters.SQLModel_repository.model.role_model import RoleModel
 
 
 class UserModel(SQLModel, table=True):

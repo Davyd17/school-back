@@ -2,7 +2,7 @@ from typing import Optional
 
 from sqlmodel import SQLModel, Field, Relationship
 
-from infraestructure.driven_adapters.SQLModel_repository.model.user_model import UserModel
+from infraestructure.driven_adapters.SQLModel_repository.model.user_model.user_model import UserModel
 
 
 class AdminModel(SQLModel, table=True):

@@ -5,7 +5,7 @@ from sqlmodel import Session, select
 from domain.gateway.user_repository_gateway import UserRepositoryGateway
 from domain.model.entities.user.user import User
 from infraestructure.driven_adapters.SQLModel_repository.mapper.user_model_mapper import UserModelMapper
-from infraestructure.driven_adapters.SQLModel_repository.model.user_model import UserModel
+from infraestructure.driven_adapters.SQLModel_repository.model.user_model.user_model import UserModel
 
 
 class UserRepository(UserRepositoryGateway):
