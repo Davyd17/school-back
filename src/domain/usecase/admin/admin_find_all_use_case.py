@@ -6,7 +6,7 @@ from ...model.entities.user.admin import Admin
 
 class AdminFindAllUseCase:
     def __init__(self, repository: AdminRepositoryGateway):
-        self.admin_repository_gateway = repository
+        self.repository = repository
 
     def execute(self) -> List[Admin]:
-        return self.admin_repository_gateway.get_all()
+        return self.repository.get_all()
