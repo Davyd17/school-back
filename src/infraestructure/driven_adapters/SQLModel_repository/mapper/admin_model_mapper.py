@@ -1,10 +1,13 @@
 from typing import Tuple
 
 from domain.model.entities.user.admin import Admin
-from infraestructure.driven_adapters.SQLModel_repository.mapper.phone_number_model_mapper import PhoneNumberModelMapper
-from infraestructure.driven_adapters.SQLModel_repository.mapper.user_model_mapper import UserModelMapper
-from infraestructure.driven_adapters.SQLModel_repository.model.admin_model import AdminModel
-from infraestructure.driven_adapters.SQLModel_repository.model.user_model import UserModel
+
+from .phone_number_model_mapper import PhoneNumberModelMapper
+from .role_model_mapper import RoleModelMapper
+
+from .user_model_mapper import UserModelMapper
+from ..model.user_model.admin_model import AdminModel
+from ..model.user_model.user_model import UserModel
 
 
 class AdminModelMapper:
@@ -14,17 +17,13 @@ class AdminModelMapper:
 
         return Admin(
             admin_id = admin_model.admin_id,
-            name = user_model.name,
-            last_name = user_model.last_name,
-            username = user_model.username,
-            email = user_model.email,
-            password = user_model.password,
-            is_active = user_model.is_active,
-            created_at = user_model.created_at,
-            updated_at = user_model.updated_at,
             phone_numbers = [PhoneNumberModelMapper.to_domain(phone)
                              for phone in user_model.phone_numbers],
-            role = user_model.role
+            role = RoleModelMapper.to_domain(user_model.role),
+            **user_model.model_dump(exclude={"phone_numbers",
+                                             "role",
+                                             "role_id",
+                                             "user_id"})
         )
 
     @staticmethod

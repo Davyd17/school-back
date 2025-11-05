@@ -6,7 +6,7 @@ from .link_models.role_permission_link import RolePermissionLink
 from .permission_model import PermissionModel
 
 if TYPE_CHECKING:
-    from .user_model import UserModel
+    from infraestructure.driven_adapters.SQLModel_repository.model.user_model.user_model import UserModel
 
 class RoleModel(SQLModel, table=True):
     __tablename__ = "roles"

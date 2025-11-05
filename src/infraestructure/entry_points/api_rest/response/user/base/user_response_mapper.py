@@ -3,7 +3,7 @@ from typing import List
 from domain.model.entities.role import Role
 from domain.model.entities.user.user import User
 from .user_response import UserResponse
-from ..phone_number.phone_number_response_mapper import PhoneNumberResponseMapper
+from infraestructure.entry_points.api_rest.response.phone_number.phone_number_response_mapper import PhoneNumberResponseMapper
 
 
 class UserResponseMapper:

@@ -1,7 +1,7 @@
 from domain.model.entities.user.admin import Admin
 from .admin_response import AdminResponse
-from ..phone_number.phone_number_response_mapper import PhoneNumberResponseMapper
-from ..role.role_response_mapper import RoleResponseMapper
+from infraestructure.entry_points.api_rest.response.phone_number.phone_number_response_mapper import PhoneNumberResponseMapper
+from infraestructure.entry_points.api_rest.response.role.role_response_mapper import RoleResponseMapper
 
 
 class AdminResponseMapper:

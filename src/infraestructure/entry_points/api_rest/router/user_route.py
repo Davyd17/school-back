@@ -4,8 +4,8 @@ from fastapi import APIRouter, Depends
 
 from domain.usecase.user.user_find_all_usecase import UserFindAllUseCase
 from ..provider.user_provider import get_user_find_all_usecase
-from ..response.user.user_response import UserResponse
-from ..response.user.user_response_mapper import UserResponseMapper
+from infraestructure.entry_points.api_rest.response.user.base.user_response import UserResponse
+from infraestructure.entry_points.api_rest.response.user.base.user_response_mapper import UserResponseMapper
 
 router = APIRouter(prefix="/user", tags=["user"])
 

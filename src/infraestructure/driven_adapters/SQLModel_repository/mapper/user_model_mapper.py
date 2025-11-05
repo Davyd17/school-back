@@ -1,6 +1,6 @@
 from domain.model.entities.user.user import User
 from infraestructure.driven_adapters.SQLModel_repository.mapper.phone_number_model_mapper import PhoneNumberModelMapper
-from infraestructure.driven_adapters.SQLModel_repository.model.user_model import UserModel
+from infraestructure.driven_adapters.SQLModel_repository.model.user_model.user_model import UserModel
 
 #TODO: Apply builder pattern for these large entity arguments
 class UserModelMapper:

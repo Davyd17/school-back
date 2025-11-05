@@ -5,8 +5,8 @@ from sqlmodel import Session, select
 from domain.gateway.admin_repository_gateway import AdminRepositoryGateway
 from domain.model.entities.user.admin import Admin
 from ..mapper.admin_model_mapper import AdminModelMapper
-from ..model.admin_model import AdminModel
-from ..model.user_model import UserModel
+from infraestructure.driven_adapters.SQLModel_repository.model.user_model.admin_model import AdminModel
+from infraestructure.driven_adapters.SQLModel_repository.model.user_model.user_model import UserModel
 
 
 class AdminRepository(AdminRepositoryGateway):
@@ -20,7 +20,6 @@ class AdminRepository(AdminRepositoryGateway):
     def get_all(self) -> List[Admin]:
 
         user_admin_db = self.session.exec(select(self.model, UserModel).join(UserModel)).all()
-        print(f"AQUI ESTAAAAAAAAAAAAAAAAA {user_admin_db}")
         return [AdminModelMapper.to_domain(admin_db, user_db) for admin_db, user_db in user_admin_db]
 
     def create(self, entity: Admin) -> Admin:

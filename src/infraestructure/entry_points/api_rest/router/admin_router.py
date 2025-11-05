@@ -4,8 +4,8 @@ from fastapi import APIRouter, Depends
 
 from domain.usecase.admin.admin_find_all_use_case import AdminFindAllUseCase
 from ..provider.admin_provider import get_admin_find_all_usecase
-from ..response.admin.admin_response import AdminResponse
-from ..response.admin.admin_response_mapper import AdminResponseMapper
+from infraestructure.entry_points.api_rest.response.user.admin.admin_response import AdminResponse
+from infraestructure.entry_points.api_rest.response.user.admin.admin_response_mapper import AdminResponseMapper
 
 router = APIRouter(prefix="/admin", tags=["admin"])
 
