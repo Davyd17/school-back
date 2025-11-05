@@ -1,16 +1,21 @@
 from datetime import datetime
-from typing import List
+from typing import List, Optional
 
 from pydantic import BaseModel
 
+from infraestructure.entry_points.api_rest.response.phone_number.phone_number_response import PhoneNumberResponse
+from infraestructure.entry_points.api_rest.response.role.role_response import RoleResponse
+
 
 class UserResponse(BaseModel):
-    id: int
+    user_id: Optional[int] = None
     full_name: str
     username: str
     email: str
     is_active: bool
-    phone_numbers: List[str] = []
-    role: str
-    created_at: datetime
-    updated_at: datetime | None
+    phone_numbers: List[PhoneNumberResponse] = []
+    role: RoleResponse
+    created_at: Optional[datetime] = None
+    updated_at: Optional[datetime] = None
+
+

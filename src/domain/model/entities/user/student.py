@@ -6,6 +6,6 @@ from ..user.user import User
 
 @dataclass
 class Student(User):
-    id: Optional[int] = None
+    student_id: Optional[int] = None
     subject_averages: Dict[int, Decimal] = field(default_factory=dict)
     group_id: Optional[int] = None
