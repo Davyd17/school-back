@@ -4,4 +4,4 @@ from ..user.user import User
 
 @dataclass
 class Admin(User):
-    id: Optional[int] = None
+    admin_id: Optional[int] = None

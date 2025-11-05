@@ -7,5 +7,5 @@ from ..user.user import User
 
 @dataclass
 class Teacher(User):
-    id: Optional[int] = None
+    teacher_id: Optional[int] = None
     salary: Decimal = Decimal("0.00")

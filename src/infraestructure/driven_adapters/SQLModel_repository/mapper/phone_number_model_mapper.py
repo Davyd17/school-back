@@ -21,6 +21,6 @@ class PhoneNumberModelMapper:
             ext=domain.ext,
             phone=domain.phone,
             is_active=domain.is_active,
-            user_id=domain.contact.id,
+            user_id=domain.contact.admin_id,
             user=domain.contact
         )

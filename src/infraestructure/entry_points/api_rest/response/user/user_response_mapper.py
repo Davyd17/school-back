@@ -1,7 +1,9 @@
-from domain.model.entities.phone_number import PhoneNumber
+from typing import List
+
 from domain.model.entities.role import Role
 from domain.model.entities.user.user import User
 from .user_response import UserResponse
+from ..phone_number.phone_number_response_mapper import PhoneNumberResponseMapper
 
 
 class UserResponseMapper:
@@ -9,12 +11,13 @@ class UserResponseMapper:
     @staticmethod
     def from_domain(domain: User) -> UserResponse:
         return UserResponse(
-            id = domain.id,
+            user_id = domain.user_id,
             full_name = domain.get_full_name(),
             username = domain.username,
             email = domain.email,
             is_active = domain.is_active,
-            phone_numbers = [str(phone) for phone in domain.phone_numbers],
+            phone_numbers = [PhoneNumberResponseMapper.from_domain(phone)
+                             for phone in domain.phone_numbers],
             role = domain.role.name,
             created_at = domain.created_at,
             updated_at = domain.updated_at,
@@ -23,13 +26,14 @@ class UserResponseMapper:
     @staticmethod
     def to_domain(response: UserResponse) -> User:
         return User(
-            id = response.id,
+            user_id= response.id,
             name= response.full_name.split(" ")[0],
             last_name= response.full_name.split(" ")[1],
             username = response.username,
             email = response.email,
             is_active = response.is_active,
-            phone_numbers = [PhoneNumber(phone=phone) for phone in response.phone_numbers],
+            phone_numbers = [PhoneNumberResponseMapper.to_domain(phone)
+                             for phone in response.phone_numbers],
             role = Role(name=response.role),
             created_at = response.created_at,
             updated_at = response.updated_at,

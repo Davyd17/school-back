@@ -11,7 +11,9 @@ from .role_model import RoleModel
 class UserModel(SQLModel, table=True):
     __tablename__ = "users"
 
-    id : int | None = Field(default=None, primary_key=True)
+    user_id : int | None = Field(default=None,
+                                 primary_key=True,
+                                 sa_column_kwargs={"name": "id"})
     name : str
     last_name : str
     username : str
