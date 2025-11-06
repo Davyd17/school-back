@@ -4,6 +4,7 @@ from domain.model.entities.role import Role
 from domain.model.entities.user.user import User
 from .user_response import UserResponse
 from infraestructure.entry_points.api_rest.response.phone_number.phone_number_response_mapper import PhoneNumberResponseMapper
+from ...role.role_response_mapper import RoleResponseMapper
 
 
 class UserResponseMapper:
@@ -18,7 +19,7 @@ class UserResponseMapper:
             is_active = domain.is_active,
             phone_numbers = [PhoneNumberResponseMapper.from_domain(phone)
                              for phone in domain.phone_numbers],
-            role = domain.role.name,
+            role = RoleResponseMapper.from_domain(domain.role),
             created_at = domain.created_at,
             updated_at = domain.updated_at,
         )
@@ -34,7 +35,7 @@ class UserResponseMapper:
             is_active = response.is_active,
             phone_numbers = [PhoneNumberResponseMapper.to_domain(phone)
                              for phone in response.phone_numbers],
-            role = Role(name=response.role),
+            role = RoleResponseMapper.to_domain(response.role),
             created_at = response.created_at,
             updated_at = response.updated_at,
         )
