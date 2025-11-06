@@ -1,5 +1,5 @@
 from domain.model.entities.phone_number import PhoneNumber
-from ..model.phone_number_model import PhoneNumberModel
+from infraestructure.driven_adapters.SQLModel_repository.model.phone_number_model import PhoneNumberModel
 
 
 class PhoneNumberModelMapper:
