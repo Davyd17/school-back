@@ -25,3 +25,5 @@ Implementation of POO and Funtional programming.
 | **Containerization**                 | Docker & Docker Compose         |
 
 
+## 📊 Database Model
+[![Database Model](db_docs/graphic.png)](db_docs/graphic.pdf)
