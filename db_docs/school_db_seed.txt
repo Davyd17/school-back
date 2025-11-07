@@ -1,0 +1,112 @@
+USE school_db;
+
+-- ======================
+-- ROLES & PERMISSIONS
+-- ======================
+
+INSERT INTO roles (name, description)
+VALUES
+    ('Admin', 'System administrator with full access'),
+    ('Teacher', 'Instructor with access to assigned classes'),
+    ('Student', 'Learner enrolled in one or more groups');
+
+INSERT INTO permissions (name)
+VALUES
+    ('manage_users'),
+    ('view_grades'),
+    ('edit_grades'),
+    ('manage_subjects'),
+    ('view_subjects');
+
+-- Associate permissions to roles
+INSERT INTO roles_permissions (role_id, permission_id)
+VALUES
+    (1, 1), -- Admin: manage_users
+    (1, 2), (1, 3), (1, 4), (1, 5), -- Admin: all
+    (2, 2), (2, 3), (2, 4), (2, 5), -- Teacher: can view/edit grades, subjects
+    (3, 2), (3, 5); -- Student: can view grades, subjects
+
+
+-- ======================
+-- USERS
+-- ======================
+
+INSERT INTO users (name, last_name, username, email, password, is_active, role_id)
+VALUES
+    ('Alice', 'Johnson', 'alice_admin', 'alice@school.com', 'hashed_pass_1', TRUE, 1),
+    ('Bob', 'Smith', 'bob_teacher', 'bob@school.com', 'hashed_pass_2', TRUE, 2),
+    ('Carol', 'Lopez', 'carol_teacher', 'carol@school.com', 'hashed_pass_3', TRUE, 2),
+    ('David', 'Martinez', 'david_student', 'david@school.com', 'hashed_pass_4', TRUE, 3),
+    ('Eva', 'Garcia', 'eva_student', 'eva@school.com', 'hashed_pass_5', TRUE, 3),
+    ('Frank', 'Rodriguez', 'frank_student', 'frank@school.com', 'hashed_pass_6', TRUE, 3);
+
+-- ======================
+-- PHONE NUMBERS
+-- ======================
+
+INSERT INTO phone_numbers (ext, phone, user_id)
+VALUES
+    (57, '3001234567', 1),
+    (57, '3002345678', 2),
+    (57, '3003456789', 3),
+    (57, '3004567890', 4),
+    (57, '3005678901', 5),
+    (57, '3006789012', 6);
+
+-- ======================
+--  ADMINS / TEACHERS / STUDENTS
+-- ======================
+
+INSERT INTO admins (user_id) VALUES (1);
+
+INSERT INTO teachers (salary, user_id)
+VALUES
+    (2500.00, 2),
+    (2600.00, 3);
+
+INSERT INTO grades (level)
+VALUES ('1st Grade'), ('2nd Grade'), ('3rd Grade');
+
+INSERT INTO `groups` (name)
+VALUES ('A'), ('B'), ('C');
+
+INSERT INTO groups_grades (group_id, grade_id, teacher_id)
+VALUES
+    (1, 1, 1), -- Bob teaches Group A, 1st Grade
+    (2, 2, 2); -- Carol teaches Group B, 2nd Grade
+
+-- Link students to groups
+INSERT INTO students (user_id, group_id)
+VALUES
+    (4, 1),  -- David -> Group A
+    (5, 1),  -- Eva -> Group A
+    (6, 2);  -- Frank -> Group B
+
+-- ======================
+--  SUBJECTS
+-- ======================
+
+INSERT INTO subjects (name, description, teacher_id)
+VALUES
+    ('Math', 'Basic arithmetic and problem solving', 1),
+    ('Science', 'Introductory biology and physics', 2),
+    ('English', 'Reading, writing, and communication', 1);
+
+INSERT INTO subjects_grades (subject_id, grade_id)
+VALUES
+    (1, 1),
+    (2, 1),
+    (3, 2);
+
+-- ======================
+--  STUDENT-SUBJECT RELATIONS
+-- ======================
+
+INSERT INTO student_subject (student_id, subject_id, average)
+VALUES
+    (1, 1, 85.50), -- David -> Math
+    (1, 2, 78.25), -- David -> Science
+    (2, 1, 91.00), -- Eva -> Math
+    (2, 2, 88.75), -- Eva -> Science
+    (3, 3, 73.40); -- Frank -> English
+
