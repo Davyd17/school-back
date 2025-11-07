@@ -86,7 +86,7 @@ docker-compose.yml
 # --- Database / data dumps ---
 *.db
 *.sqlite3
-*.sql
+#*.sql
 *.csv
 
 # --- Mypy / Pyright / Pyre ---
