@@ -13,13 +13,15 @@ Implementation of POO and Funtional programming.
  - Teachers Module — Salary management and group/subject assignment
  = Dockerized Environment — Easy to deploy and connect with MySQL
 
+
+
 | Layer                                | Technology                      |
 | ------------------------------------ | ------------------------------- |
 | **Backend Framework**                | FastAPI                         |
 | **ORM / Models**                     | SQLModel                        |
 | **Database**                         | MySQL (can adapt to PostgreSQL) |
-| **Migrations**                       | Flyway                          |
 | **Environment & Dependency Manager** | Poetry                          |
 | **Server**                           | Uvicorn                         |
 | **Containerization**                 | Docker & Docker Compose         |
+
 
