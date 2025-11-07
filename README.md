@@ -4,6 +4,7 @@ A backend system built with FastAPI and SQLModel for managing school operations.
 The project is structured for scalability and clean separation of concerns following clean architecture and SOLID principles.
 Implementation of POO and Funtional programming.
 
+
 🚀 Features
 
  - User Management — CRUD operations for users with roles and phone numbers
@@ -14,6 +15,7 @@ Implementation of POO and Funtional programming.
  = Dockerized Environment — Easy to deploy and connect with MySQL
 
 
+🧱 Tech Stack
 
 | Layer                                | Technology                      |
 | ------------------------------------ | ------------------------------- |
@@ -28,4 +30,5 @@ Implementation of POO and Funtional programming.
 ## 📊 Database Model
 
 [![Database Model](db_docs/graphic_model.png)](db_docs/graphic_model.pdf)
+
 
