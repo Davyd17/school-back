@@ -26,4 +26,6 @@ Implementation of POO and Funtional programming.
 
 
 ## 📊 Database Model
-[![Database Model](db_docs/graphic.png)](db_docs/graphic.pdf)
+
+[![Database Model](db_docs/graphic_model.png)](db_docs/graphic_model.pdf)
+
