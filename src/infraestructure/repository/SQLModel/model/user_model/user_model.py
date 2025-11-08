@@ -19,8 +19,8 @@ class UserModel(SQLModel, table=True):
     username : str
     email : str
     password : str
-    is_active : bool
-    created_at : datetime = Field(default_factory=datetime.now)
+    is_active : bool | None = Field(default=True)
+    created_at : datetime | None = Field(default_factory=datetime.now)
     updated_at : datetime | None = Field(default=None)
     role_id : int = Field(foreign_key="roles.id")
 

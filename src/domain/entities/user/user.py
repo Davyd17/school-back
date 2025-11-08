@@ -16,7 +16,7 @@ class User:
     created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None
     phone_numbers: list[PhoneNumber] | List[None] = field(default_factory=list)
-    role_id: int = None
+    role: Role = None
 
     def get_full_name(self) -> str:
         return f"{self.name} {self.last_name}"

@@ -25,5 +25,6 @@ def create_student(create: StudentCreate,
         -> StudentResponse:
 
     student = usecase.execute(StudentCreateMapper.to_domain(create))
+
     return StudentResponseMapper.from_domain(student)
 

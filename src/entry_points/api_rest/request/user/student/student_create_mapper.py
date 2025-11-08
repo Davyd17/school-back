@@ -1,4 +1,8 @@
 from domain.entities.user.student import Student
+from entry_points.api_rest.request.group.group_request import GroupRequest
+from entry_points.api_rest.request.group.group_request_mapper import GroupRequestMapper
+from entry_points.api_rest.request.role.request.role_request import RoleRequest
+from entry_points.api_rest.request.role.request.role_request_mapper import RoleRequestMapper
 from entry_points.api_rest.request.user.student.student_create import StudentCreate
 
 
@@ -13,8 +17,8 @@ class StudentCreateMapper:
             username=domain.username,
             email=domain.email,
             password=domain.password,
-            role_id=domain.role_id,
-            group_id= domain.group_id
+            role_request=RoleRequestMapper.from_domain(domain.role),
+            group_request= GroupRequestMapper.from_domain(domain.group)
         )
 
     @staticmethod
@@ -26,6 +30,6 @@ class StudentCreateMapper:
             username=create.username,
             email=create.email,
             password=create.password,
-            role_id=create.role_id,
-            group_id=create.group.id,
+            role=RoleRequestMapper.to_domain(create.role_request),
+            group=GroupRequestMapper.to_domain(create.group_request),
         )

@@ -22,6 +22,7 @@ class StudentRepositoryImpl(StudentRepository):
         return [StudentModelMapper.to_domain(student) for student in students_model]
 
     def create(self, create: Student) -> Student:
+
         model = StudentModelMapper.from_domain(create)
         self.session__.add(model)
         self.session__.commit()
