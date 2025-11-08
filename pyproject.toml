@@ -5,9 +5,12 @@ description = "School backend"
 authors = ["Your Name <you@example.com>"]
 readme = "README.md"
 packages = [
-    { include = "school_back", from = "src" },
+    { include = "app", from = "src" },
     { include = "infraestructure", from = "src" },
-    { include = "domain", from = "src" }
+    { include = "domain", from = "src" },
+    { include = "application", from = "src" },
+    { include = "entry_points", from = "src" },
+    { include = "application", from = "src" }
 ]
 
 [tool.poetry.dependencies]
