@@ -21,9 +21,9 @@ def provide_find_all_students(repository:StudentRepository = Depends(__provide_r
 
 def provide_create_student(repository:StudentRepository = Depends(__provide_repository),
                            find_group_by_id:FindGroupById = Depends(provide_find_group_by_id),
-                           find_role_by_name:FindRoleById = Depends(provide_find_role_by_id)) \
+                           find_role_by_id:FindRoleById = Depends(provide_find_role_by_id)) \
         -> CreateStudent:
 
     return CreateStudent(repository,
                          find_group_by_id,
-                         find_role_by_name)
+                         find_role_by_id)

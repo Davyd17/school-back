@@ -1,6 +1,7 @@
+from domain.entities.group import Group
 from entry_points.api_rest.response.user.base.user_response import UserResponse
 
 
 class StudentResponse(UserResponse):
     student_id: int
-    group_name: str
+    group: Group
