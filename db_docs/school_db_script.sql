@@ -11,7 +11,7 @@ CREATE TABLE roles (
 );
 
 CREATE TABLE permissions (
-    id   INT PRIMARY KEY KEY AUTO_INCREMENT,
+    id   INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(100) UNIQUE NOT NULL
 );
 
@@ -42,6 +42,8 @@ CREATE TABLE users (
         FOREIGN KEY (role_id) REFERENCES roles (id)
 );
 
+CREATE INDEX idx_users_role_id ON users(role_id);
+
 CREATE TABLE phone_numbers (
     id         BIGINT PRIMARY KEY AUTO_INCREMENT,
     ext        INT,
@@ -67,15 +69,6 @@ CREATE TABLE teachers (
         FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
 
-CREATE TABLE students (
-    id        BIGINT PRIMARY KEY AUTO_INCREMENT,
-    user_id   BIGINT NOT NULL,
-    group_id  INT NOT NULL, -- referenced later after groups table is created
-    CONSTRAINT fk_students_user
-        FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
-);
-
-
 --  ACADEMIC STRUCTURE
 
 CREATE TABLE grades (
@@ -85,25 +78,27 @@ CREATE TABLE grades (
 
 CREATE TABLE `groups` (
     id          INT PRIMARY KEY AUTO_INCREMENT,
-    name        VARCHAR(10) UNIQUE NOT NULL
-);
-
-CREATE TABLE groups_grades (
-    group_id    INT NOT NULL,
-    grade_id    INT NOT NULL,
+    name        VARCHAR(10) UNIQUE NOT NULL,
+    grade_id   INT NOT NULL,
     teacher_id  BIGINT,
-    PRIMARY KEY (group_id, grade_id),
-    CONSTRAINT fk_groups_grades_group
-        FOREIGN KEY (group_id) REFERENCES `groups` (id) ON DELETE CASCADE,
-    CONSTRAINT fk_groups_grades_grade
-        FOREIGN KEY (grade_id) REFERENCES grades (id) ON DELETE CASCADE,
-    CONSTRAINT fk_groups_grades_teacher
-        FOREIGN KEY (teacher_id) REFERENCES teachers (id) ON DELETE SET NULL
+    CONSTRAINT fk_groups_grade
+		FOREIGN KEY (grade_id) REFERENCES grades(id) ON DELETE CASCADE,
+	CONSTRAINT fk_groups_teacher
+		FOREIGN KEY (teacher_id) REFERENCES teachers(id) ON DELETE SET NULL
 );
 
-ALTER TABLE students
-    ADD CONSTRAINT fk_students_group
-    FOREIGN KEY (group_id) REFERENCES `groups` (id);
+
+CREATE TABLE students (
+    id        BIGINT PRIMARY KEY AUTO_INCREMENT,
+    user_id   BIGINT NOT NULL,
+    group_id  INT,
+    CONSTRAINT fk_students_user
+        FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
+	CONSTRAINT fk_students_group
+		FOREIGN KEY (group_id) REFERENCES `groups`(id) ON DELETE SET NULL
+);
+
+CREATE INDEX idx_students_group_id ON students(group_id);
 
 CREATE TABLE subjects (
     id           INT PRIMARY KEY AUTO_INCREMENT,
@@ -136,5 +131,7 @@ CREATE TABLE student_subject (
     CONSTRAINT fk_student_subject_subject
         FOREIGN KEY (subject_id) REFERENCES subjects (id)
 );
+
+CREATE INDEX idx_student_subject_student_id ON student_subject(student_id);
 
 
