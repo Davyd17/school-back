@@ -1,6 +1,7 @@
 from typing import List
 
 from fastapi import APIRouter, Depends
+from fastapi.openapi.utils import status_code_ranges
 
 from app.dependencies.student_provider import provide_find_all_students, provide_create_student
 from application.usecase.student.create_student import CreateStudent
