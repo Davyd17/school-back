@@ -28,7 +28,9 @@ Implementation of POO and Funtional programming.
 
 
 ## 📊 Database Model
+<img width="1609" height="979" alt="graphic-model" src="https://github.com/user-attachments/assets/b792f8a1-3160-4e4a-8614-405bd97f549c" />
 
-[![Database Model](db_docs/graphic_model.png)](db_docs/graphic_model.pdf)
+
+
 
 
