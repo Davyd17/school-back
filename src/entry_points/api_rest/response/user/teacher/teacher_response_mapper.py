@@ -12,13 +12,14 @@ class TeacherResponseMapper:
 
         return TeacherResponse(
             teacher_id=domain.teacher_id,
-            full_name=domain.get_full_name(),
+            name=domain.name,
+            last_name=domain.last_name,
             username=domain.username,
             email=domain.email,
             is_active=domain.is_active,
             phone_numbers=[PhoneNumberResponseMapper.from_domain(phone)
                            for phone in domain.phone_numbers],
-            role=RoleResponseMapper.from_domain(domain.role),
+            role_response=RoleResponseMapper.from_domain(domain.role),
             created_at=domain.created_at,
             updated_at=domain.updated_at,
             salary=domain.salary
@@ -28,8 +29,8 @@ class TeacherResponseMapper:
     def to_domain(response: TeacherResponse) -> Teacher:
 
         return Teacher(
-            name=Teacher.get_name_from_full_name(response.get_full_name()),
-            last_name=Teacher.get_last_name_from_full_name(response.full_name),
+            name=response.name,
+            last_name=response.last_name,
             username=response.username,
             email=response.email,
             password=response.password,
