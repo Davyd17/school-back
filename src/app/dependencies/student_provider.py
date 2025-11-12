@@ -1,5 +1,4 @@
 from fastapi import Depends
-from sqlmodel import Session
 
 from app.config.database_provider import session_dep
 from app.dependencies.group_provider import provide_find_group_by_id
@@ -27,3 +26,7 @@ def provide_create_student(repository:StudentRepository = Depends(__provide_repo
     return CreateStudent(repository,
                          find_group_by_id,
                          find_role_by_id)
+
+def provide_update_student(repository:StudentRepository = Depends(__provide_repository),
+
+                           )
