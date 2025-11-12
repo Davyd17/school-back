@@ -1,6 +1,5 @@
 from domain.entities.grade import Grade
 from .grade_response import GradeResponse
-from ..group.group_response_mapper import GroupResponseMapper
 
 
 class GradeResponseMapper:
@@ -11,8 +10,6 @@ class GradeResponseMapper:
         return GradeResponse(
             id=domain.id,
             level=domain.level,
-            groups=[GroupResponseMapper.from_domain(group)
-                    for group in domain.groups]
         )
 
     @staticmethod
@@ -21,6 +18,4 @@ class GradeResponseMapper:
         return Grade(
             id=response.id,
             level=response.level,
-            groups=[GroupResponseMapper.to_domain(group)
-                    for group in response.groups]
         )

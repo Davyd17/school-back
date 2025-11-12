@@ -1,6 +1,8 @@
 from domain.entities.user.student import Student
+from entry_points.api_rest.response.group.group_response_mapper import GroupResponseMapper
 from entry_points.api_rest.response.phone_number.phone_number_response_mapper import \
     PhoneNumberResponseMapper
+from entry_points.api_rest.response.role.role_response_mapper import RoleResponseMapper
 from entry_points.api_rest.response.user.student.student_response import StudentResponse
 
 
@@ -18,10 +20,10 @@ class StudentResponseMapper:
             is_active=domain.is_active,
             phone_numbers=[PhoneNumberResponseMapper.from_domain(phone)
                            for phone in domain.phone_numbers],
-            role=domain.role,
+            role_response=RoleResponseMapper.from_domain(domain.role),
             created_at=domain.created_at,
             updated_at=domain.updated_at,
-            group=domain.group
+            group_response=GroupResponseMapper.from_domain(domain.group)
         )
 
     @staticmethod
@@ -29,7 +31,7 @@ class StudentResponseMapper:
 
         return Student(
             student_id=response.student_id,
-            group=response.group,
+            group=GroupResponseMapper.to_domain(response.group_response),
             name=response.name,
             last_name=response.last_name,
             username=response.username,

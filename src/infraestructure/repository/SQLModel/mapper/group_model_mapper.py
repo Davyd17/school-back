@@ -1,4 +1,6 @@
 from domain.entities.group import Group
+from infraestructure.repository.SQLModel.mapper.grade_model_mapper import GradeModelMapper
+from infraestructure.repository.SQLModel.mapper.teacher_model_mapper import TeacherModelMapper
 from infraestructure.repository.SQLModel.model.group_model import GroupModel
 
 
@@ -9,7 +11,9 @@ class GroupModelMapper:
 
         return GroupModel(
             id=domain.id,
-            name=domain.name
+            name=domain.name,
+            grade=domain.grade,
+            teacher=domain.teacher
         )
 
     @staticmethod
@@ -17,5 +21,7 @@ class GroupModelMapper:
 
         return Group(
             id=model.id,
-            name=model.name
+            name=model.name,
+            grade=GradeModelMapper.to_domain(model.grade),
+            teacher=TeacherModelMapper.to_domain(model.teacher)
         )

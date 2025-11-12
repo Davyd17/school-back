@@ -1,11 +1,7 @@
-from dataclasses import dataclass, field
-from typing import Optional, List
-
-from domain.entities.group import Group
-
+from dataclasses import dataclass
+from typing import Optional
 
 @dataclass
 class Grade:
     id: Optional[int] = None
     level: str = ""
-    groups: List[Group] = field(default_factory=list)
