@@ -1,9 +1,7 @@
 from domain.entities.user.student import Student
-from entry_points.api_rest.request.group.group_request import GroupRequest
 from entry_points.api_rest.request.group.group_request_mapper import GroupRequestMapper
-from entry_points.api_rest.request.role.request.role_request import RoleRequest
 from entry_points.api_rest.request.role.request.role_request_mapper import RoleRequestMapper
-from entry_points.api_rest.request.user.student.student_create import StudentCreate
+from entry_points.api_rest.request.user.student.create.student_create import StudentCreate
 
 
 class StudentCreateMapper:

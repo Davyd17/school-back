@@ -5,7 +5,11 @@ from entry_points.api_rest.request.group.group_request import GroupRequest
 class GroupRequestMapper:
 
     @staticmethod
-    def to_domain(request: GroupRequest) -> Group:
+    def to_domain(request: GroupRequest) -> Group | None:
+
+        if request is None:
+            return None
+
         return Group(
             id=request.id
         )
