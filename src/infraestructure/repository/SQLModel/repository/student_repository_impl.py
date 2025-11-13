@@ -14,8 +14,12 @@ class StudentRepositoryImpl(StudentRepository):
 
     def get_by_id(self, id: int) -> Optional[Student]:
 
-        statement = select(StudentModel).where(StudentModel.student_id == id)
-        return StudentModelMapper.to_domain(self.__session.exec(statement).first())
+        student_model:Optional[StudentModel] = self.__session.get(StudentModel, id)
+
+        if not student_model:
+            return None
+
+        return StudentModelMapper.to_domain(student_model)
 
     def get_all(self) -> List[Student]:
 
@@ -37,7 +41,7 @@ class StudentRepositoryImpl(StudentRepository):
 
         return StudentModelMapper.to_domain(student_model)
 
-    def update(self, id: int, update: Student) -> Optional[Student]:
+    def update(self, update: Student) -> Optional[Student]:
 
         new_student_model, new_user_model = StudentModelMapper.from_domain(update)
 
@@ -50,5 +54,14 @@ class StudentRepositoryImpl(StudentRepository):
         return StudentModelMapper.to_domain(student_merged)
 
 
-    def delete(self, id: int):
-        pass
+    def delete(self, student:Student) -> bool:
+
+        student_model, user_model = StudentModelMapper.from_domain(student)
+
+        self.__session.delete(user_model)
+        self.__session.commit()
+
+        return True
+
+
+

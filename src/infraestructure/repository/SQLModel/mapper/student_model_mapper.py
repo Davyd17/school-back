@@ -1,4 +1,4 @@
-from typing import Tuple
+from typing import Tuple, Optional
 
 from domain.entities.user.student import Student
 from infraestructure.repository.SQLModel.mapper.group_model_mapper import GroupModelMapper

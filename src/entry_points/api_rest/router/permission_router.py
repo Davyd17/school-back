@@ -2,7 +2,7 @@ from typing import List
 
 from fastapi import APIRouter, Depends
 
-from app.dependencies.permission_provider import provide_find_all_permissions
+from app.fastapi_dependencies.permission_provider import provide_find_all_permissions
 from application.usecase.permission.find_all_permissions import FindAllPermissions
 from ..response.permission.permission_response import PermissionResponse
 from ..response.permission.permission_response_mapper import PermissionResponseMapper

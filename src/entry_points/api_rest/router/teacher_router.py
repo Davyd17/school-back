@@ -2,7 +2,7 @@ from typing import List
 
 from fastapi import APIRouter, Depends
 
-from app.dependencies.teacher_provider import provide_find_all_teachers
+from app.fastapi_dependencies.teacher_provider import provide_find_all_teachers
 from application.usecase.teacher.find_all_teachers import FindALlTeachers
 from ..response.user.teacher.teacher_response import TeacherResponse
 from ..response.user.teacher.teacher_response_mapper import TeacherResponseMapper

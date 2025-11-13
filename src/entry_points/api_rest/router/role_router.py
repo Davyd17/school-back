@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends
 
 from typing import List
 
-from app.dependencies.role_provider import provide_find_all_roles
+from app.fastapi_dependencies.role_provider import provide_find_all_roles
 from application.usecase.role.find_all_roles import FindAllRoles
 from ..response.role.role_response import RoleResponse
 from ..response.role.role_response_mapper import RoleResponseMapper

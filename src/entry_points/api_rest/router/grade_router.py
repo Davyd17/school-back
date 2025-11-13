@@ -3,7 +3,7 @@ from typing import List
 from fastapi import Depends
 from fastapi.routing import APIRouter
 
-from app.dependencies.grade_provider import provide_find_all_grades
+from app.fastapi_dependencies.grade_provider import provide_find_all_grades
 from application.usecase.grade.find_all_grades import FindAllGrades
 from ..response.grade.grade_response import GradeResponse
 from ..response.grade.grade_response_mapper import GradeResponseMapper
