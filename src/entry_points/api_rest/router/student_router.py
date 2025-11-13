@@ -3,9 +3,10 @@ from typing import List
 from fastapi import APIRouter, Depends, HTTPException
 
 from app.fastapi_dependencies.student_provider import provide_find_all_students, provide_create_student, \
-    provide_update_student, provide_find_student_by_id
+    provide_update_student, provide_find_student_by_id, provide_delete_student
 from application.exception.not_found_exception import NotFoundException
 from application.usecase.student.create_student import CreateStudent
+from application.usecase.student.delete_student import DeleteStudent
 from application.usecase.student.find_all_students import FindAllStudents
 from application.usecase.student.find_student_by_id import FindStudentById
 from application.usecase.student.update_student import UpdateStudent
@@ -56,6 +57,15 @@ def update_student(id : int,
         student_updated = usecase.execute(id, StudentUpdateMapper.to_domain(update_request))
         return StudentResponseMapper.from_domain(student_updated)
 
+    except NotFoundException as e:
+        raise HTTPException(status_code=404, detail=str(e))
+
+@router.delete("/{id}", status_code=204)
+def delete_student(id:int,
+                   usecase: DeleteStudent = Depends(provide_delete_student)):
+
+    try:
+        usecase.execute(id)
     except NotFoundException as e:
         raise HTTPException(status_code=404, detail=str(e))
 

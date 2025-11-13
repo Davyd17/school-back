@@ -70,7 +70,8 @@ class StudentRepositoryImpl(StudentRepository):
         try:
             student_model, user_model = StudentModelMapper.from_domain(student)
 
-            self.__session.delete(user_model)
+            user_model_merged = self.__session.merge(user_model)
+            self.__session.delete(user_model_merged)
             self.__session.commit()
 
             return True
