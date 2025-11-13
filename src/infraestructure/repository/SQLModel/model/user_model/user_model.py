@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Optional, List
 
-
+from sqlalchemy import Column, DateTime
 from sqlmodel import SQLModel, Field, Relationship
 
 from infraestructure.repository.SQLModel.model.phone_number_model import PhoneNumberModel
@@ -21,7 +21,9 @@ class UserModel(SQLModel, table=True):
     password : str
     is_active : bool | None = Field(default=True)
     created_at : datetime | None = Field(default_factory=datetime.now)
-    updated_at : datetime | None = Field(default=None)
+    updated_at : datetime | None = Field(
+        sa_column=Column(DateTime, default=datetime.now, onupdate=datetime.now)
+    )
     role_id : int = Field(foreign_key="roles.id")
 
     role : Optional[RoleModel] = Relationship(back_populates="users")

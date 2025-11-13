@@ -8,6 +8,7 @@ from application.usecase.group.find_group_by_id import FindGroupById
 from application.usecase.role.find_role_by_id import FindRoleById
 from application.usecase.student.create_student import CreateStudent
 from application.usecase.student.find_all_students import FindAllStudents
+from application.usecase.student.update_student import UpdateStudent
 from infraestructure.repository.SQLModel.repository.student_repository_impl import StudentRepositoryImpl
 
 
@@ -27,6 +28,7 @@ def provide_create_student(repository:StudentRepository = Depends(__provide_repo
                          find_group_by_id,
                          find_role_by_id)
 
-def provide_update_student(repository:StudentRepository = Depends(__provide_repository),
+def provide_update_student(repository:StudentRepository = Depends(__provide_repository)) \
+        -> UpdateStudent:
 
-                           )
+    return UpdateStudent(repository)

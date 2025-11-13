@@ -7,11 +7,11 @@ from domain.entities.phone_number import PhoneNumber
 @dataclass
 class User:
     user_id: Optional[int] = None
-    name: str = ""
-    last_name: str = ""
-    username: str = ""
-    email: str = ""
-    password: str = ""
+    name: str = None
+    last_name: str = None
+    username: str = None
+    email: str = None
+    password: str = None
     is_active: bool = True
     created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None

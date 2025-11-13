@@ -16,7 +16,11 @@ class UpdateStudent(StudentUseCase):
         if student_found is None:
             raise NotFoundException(f"Student with id: {id} not found")
 
-        return self.repository.update(id, update_request)
+        for key, value in update_request.__dict__.items():
+            if value is not None:
+                setattr(student_found, key, value)
+
+        return self.repository.update(id, student_found)
 
         
 

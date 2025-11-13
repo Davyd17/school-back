@@ -1,3 +1,5 @@
+from typing import Tuple
+
 from domain.entities.user.student import Student
 from infraestructure.repository.SQLModel.mapper.group_model_mapper import GroupModelMapper
 from infraestructure.repository.SQLModel.mapper.phone_number_model_mapper import PhoneNumberModelMapper
@@ -9,19 +11,28 @@ from infraestructure.repository.SQLModel.model.user_model.user_model import User
 class StudentModelMapper:
 
     @staticmethod
-    def from_domain(domain: Student) -> StudentModel:
+    def from_domain(domain: Student) -> Tuple[StudentModel, UserModel]:
 
-        return StudentModel(
-            group_id = domain.group.id,
-            user= UserModel(
-                name=domain.name,
-                last_name=domain.last_name,
-                username=domain.username,
-                email=domain.email,
-                password=domain.password,
-                role_id=domain.role.id
-            )
+        user_model = UserModel(
+            user_id=domain.user_id,
+            name=domain.name,
+            last_name=domain.last_name,
+            username=domain.username,
+            email=domain.email,
+            password=domain.password,
+            is_active=domain.is_active,
+            created_at=domain.created_at,
+            updated_at=domain.updated_at,
+            role_id=domain.role.id
         )
+
+        student_model = StudentModel(
+            student_id = domain.student_id,
+            user_id = domain.user_id,
+            group_id = domain.group.id
+        )
+
+        return student_model, user_model
 
     @staticmethod
     def to_domain(model: StudentModel) -> Student:

@@ -3,4 +3,4 @@ from entry_points.api_rest.request.user.base.user_update_request import UserUpda
 
 
 class StudentUpdateRequest(UserUpdateRequest):
-    group_request : GroupRequest
+    group_request : GroupRequest = None

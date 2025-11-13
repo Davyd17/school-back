@@ -1,4 +1,4 @@
-from datetime import datetime
+from tokenize import group
 
 from domain.entities.user.student import Student
 from entry_points.api_rest.request.group.group_request_mapper import GroupRequestMapper
@@ -25,5 +25,6 @@ class StudentUpdateMapper:
     def to_domain(request: StudentUpdateRequest) -> Student:
 
         return Student(
-            group=GroupRequestMapper.to_domain(request.group),
+            group=GroupRequestMapper.to_domain(request.group_request),
+            **request.model_dump(exclude_unset=True)
         )

@@ -9,7 +9,7 @@ class UserResponseMapper:
     @staticmethod
     def from_domain(domain: User) -> UserResponse:
         return UserResponse(
-            user_id = domain.user_id,
+            __user_id = domain.user_id,
             full_name = domain.get_full_name(),
             username = domain.username,
             email = domain.email,
