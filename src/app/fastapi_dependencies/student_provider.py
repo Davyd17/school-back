@@ -1,13 +1,14 @@
 from fastapi import Depends
 
 from app.config.database_provider import session_dep
-from app.dependencies.group_provider import provide_find_group_by_id
-from app.dependencies.role_provider import provide_find_role_by_id
+from app.fastapi_dependencies.group_provider import provide_find_group_by_id
+from app.fastapi_dependencies.role_provider import provide_find_role_by_id
 from application.gateway.repository.model.student_repository import StudentRepository
 from application.usecase.group.find_group_by_id import FindGroupById
 from application.usecase.role.find_role_by_id import FindRoleById
 from application.usecase.student.create_student import CreateStudent
 from application.usecase.student.find_all_students import FindAllStudents
+from application.usecase.student.find_student_by_id import FindStudentById
 from application.usecase.student.update_student import UpdateStudent
 from infraestructure.repository.SQLModel.repository.student_repository_impl import StudentRepositoryImpl
 
@@ -32,3 +33,8 @@ def provide_update_student(repository:StudentRepository = Depends(__provide_repo
         -> UpdateStudent:
 
     return UpdateStudent(repository)
+
+def provide_find_student_by_id(repository:StudentRepository = Depends(__provide_repository))\
+    -> FindStudentById:
+
+    return FindStudentById(repository)

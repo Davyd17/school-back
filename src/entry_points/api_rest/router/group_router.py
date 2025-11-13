@@ -2,7 +2,7 @@ from typing import List
 
 from fastapi import APIRouter, Depends
 
-from app.dependencies.group_provider import provide_find_all_groups
+from app.fastapi_dependencies.group_provider import provide_find_all_groups
 from application.usecase.group.find_all_groups import FindAllGroups
 from entry_points.api_rest.response.group.group_response import GroupResponse
 from entry_points.api_rest.response.group.group_response_mapper import GroupResponseMapper

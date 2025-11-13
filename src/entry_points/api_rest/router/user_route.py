@@ -2,7 +2,7 @@ from typing import List
 
 from fastapi import APIRouter, Depends
 
-from app.dependencies.user_provider import provide_find_all_users
+from app.fastapi_dependencies.user_provider import provide_find_all_users
 from application.usecase.user.find_all_users import FindAllUsers
 from entry_points.api_rest.response.user.base.user_response import UserResponse
 from entry_points.api_rest.response.user.base.user_response_mapper import UserResponseMapper

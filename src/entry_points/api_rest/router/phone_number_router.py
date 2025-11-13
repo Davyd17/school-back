@@ -2,7 +2,7 @@ from typing import List
 
 from fastapi import APIRouter, Depends
 
-from app.dependencies.phone_number_provider import provide_find_all_phone_numbers
+from app.fastapi_dependencies.phone_number_provider import provide_find_all_phone_numbers
 from application.usecase.phone_number.find_all_phone_numbers import FindALlPhoneNumbers
 from ..response.phone_number.phone_number_response import PhoneNumberResponse
 from ..response.phone_number.phone_number_response_mapper import PhoneNumberResponseMapper

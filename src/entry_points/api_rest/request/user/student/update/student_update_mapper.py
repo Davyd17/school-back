@@ -26,5 +26,5 @@ class StudentUpdateMapper:
 
         return Student(
             group=GroupRequestMapper.to_domain(request.group_request),
-            **request.model_dump(exclude_unset=True)
+            **request.model_dump(exclude_unset=True, exclude={"group_request"})
         )

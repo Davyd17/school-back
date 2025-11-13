@@ -2,7 +2,7 @@ from typing import List
 
 from fastapi import APIRouter, Depends
 
-from app.dependencies.admin_provider import provide_find_all_admins
+from app.fastapi_dependencies.admin_provider import provide_find_all_admins
 from application.usecase.admin.find_all_admins import FindAllAdmins
 from entry_points.api_rest.response.user.admin.admin_response import AdminResponse
 from entry_points.api_rest.response.user.admin.admin_response_mapper import AdminResponseMapper

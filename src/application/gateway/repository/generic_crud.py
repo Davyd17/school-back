@@ -18,9 +18,9 @@ class GenericCrud(ABC, Generic[T]):
         pass
 
     @abstractmethod
-    def update(self, id: int, update: T) -> T:
+    def update(self, update: T) -> T:
         pass
 
     @abstractmethod
-    def delete(self, id: int):
+    def delete(self, entity: T) -> bool:
         pass
