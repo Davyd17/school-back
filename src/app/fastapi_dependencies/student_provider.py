@@ -7,6 +7,7 @@ from application.gateway.repository.model.student_repository import StudentRepos
 from application.usecase.group.find_group_by_id import FindGroupById
 from application.usecase.role.find_role_by_id import FindRoleById
 from application.usecase.student.create_student import CreateStudent
+from application.usecase.student.delete_student import DeleteStudent
 from application.usecase.student.find_all_students import FindAllStudents
 from application.usecase.student.find_student_by_id import FindStudentById
 from application.usecase.student.update_student import UpdateStudent
@@ -38,3 +39,8 @@ def provide_find_student_by_id(repository:StudentRepository = Depends(__provide_
     -> FindStudentById:
 
     return FindStudentById(repository)
+
+def provide_delete_student(repository:StudentRepository = Depends(__provide_repository))\
+    -> DeleteStudent:
+
+    return DeleteStudent(repository)
