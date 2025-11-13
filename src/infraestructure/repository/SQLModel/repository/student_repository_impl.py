@@ -1,5 +1,6 @@
 from typing import List, Optional
 
+from sqlalchemy.exc import SQLAlchemyError
 from sqlmodel import select, Session
 
 from application.gateway.repository.model.student_repository import StudentRepository
@@ -28,40 +29,53 @@ class StudentRepositoryImpl(StudentRepository):
 
     def create(self, create: Student) -> Student:
 
-        student_model, user_model = StudentModelMapper.from_domain(create)
+        try:
 
-        self.__session.add(user_model)
-        self.__session.flush()
+            student_model, user_model = StudentModelMapper.from_domain(create)
 
-        student_model.user_id = user_model.id
+            self.__session.add(user_model)
+            self.__session.flush()
 
-        self.__session.add(student_model)
-        self.__session.commit()
-        self.__session.refresh(student_model)
+            student_model.user_id = user_model.id
 
-        return StudentModelMapper.to_domain(student_model)
+            self.__session.add(student_model)
+            self.__session.commit()
+            self.__session.refresh(student_model)
+
+            return StudentModelMapper.to_domain(student_model)
+
+        except SQLAlchemyError as e:
+            self.__session.rollback()
+            raise Exception(f"Database exception when creating: {e}")
+
 
     def update(self, update: Student) -> Optional[Student]:
+        try:
+            new_student_model, new_user_model = StudentModelMapper.from_domain(update)
 
-        new_student_model, new_user_model = StudentModelMapper.from_domain(update)
+            self.__session.merge(new_user_model)
+            student_merged = self.__session.merge(new_student_model)
+            self.__session.commit()
+            self.__session.refresh(student_merged)
+            self.__session.refresh(student_merged.user)
 
-        self.__session.merge(new_user_model)
-        student_merged = self.__session.merge(new_student_model)
-        self.__session.commit()
-        self.__session.refresh(student_merged)
-        self.__session.refresh(student_merged.user)
+            return StudentModelMapper.to_domain(student_merged)
+        except SQLAlchemyError as e:
+            self.__session.rollback()
+            raise Exception(f"Database exception when updating {e}")
 
-        return StudentModelMapper.to_domain(student_merged)
 
 
     def delete(self, student:Student) -> bool:
+        try:
+            student_model, user_model = StudentModelMapper.from_domain(student)
 
-        student_model, user_model = StudentModelMapper.from_domain(student)
+            self.__session.delete(user_model)
+            self.__session.commit()
 
-        self.__session.delete(user_model)
-        self.__session.commit()
-
-        return True
-
+            return True
+        except SQLAlchemyError as e:
+            self.__session.rollback()
+            raise Exception(f"Database exception when deleting: {e}")
 
 
