@@ -1,5 +1,6 @@
 from typing import List, Optional
 
+from sqlalchemy.exc import SQLAlchemyError
 from sqlmodel import Session, select
 
 from application.gateway.repository.model.teacher_repository import TeacherRepository
@@ -25,7 +26,24 @@ class TeacherRepositoryImpl(TeacherRepository):
         return [TeacherModelMapper.to_domain(teacher) for teacher in teachers_model]
 
     def create(self, create: Teacher) -> Teacher:
-        pass
+
+        try:
+
+            teacher_model, user_model = TeacherModelMapper.from_domain(create)
+
+            self.__session.add(user_model)
+            self.__session.flush()
+
+            teacher_model.user_id = user_model.user_id
+
+            self.__session.add(teacher_model)
+            self.__session.commit()
+            self.__session.refresh(teacher_model)
+
+            return TeacherModelMapper.to_domain(teacher_model)
+
+        except SQLAlchemyError as e:
+            raise Exception(f"Database exception when create teacher: {e}")
 
     def update(self, update: Teacher) -> Teacher:
         pass
