@@ -3,7 +3,6 @@ from typing import Tuple
 from domain.entities.user.teacher import Teacher
 from .phone_number_model_mapper import PhoneNumberModelMapper
 from .role_model_mapper import RoleModelMapper
-from .user_model_mapper import UserModelMapper
 from ..model.user_model.teacher_model import TeacherModel
 from ..model.user_model.user_model import UserModel
 
@@ -26,6 +25,7 @@ class TeacherModelMapper:
     def from_domain(domain: Teacher) -> Tuple[TeacherModel, UserModel]:
 
         user_model = UserModel(
+            user_id=domain.user_id,
             name=domain.name,
             last_name=domain.last_name,
             username=domain.username,

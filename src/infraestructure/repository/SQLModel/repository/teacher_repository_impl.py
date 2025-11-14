@@ -43,10 +43,25 @@ class TeacherRepositoryImpl(TeacherRepository):
             return TeacherModelMapper.to_domain(teacher_model)
 
         except SQLAlchemyError as e:
-            raise Exception(f"Database exception when create teacher: {e}")
+            raise Exception(f"Database exception when creating teacher: {e}")
 
     def update(self, update: Teacher) -> Teacher:
-        pass
+
+        try:
+            new_teacher_model, new_user_model = TeacherModelMapper.from_domain(update)
+
+
+
+            self.__session.merge(new_user_model)
+            teacher_merged = self.__session.merge(new_teacher_model)
+            self.__session.commit()
+            self.__session.refresh(teacher_merged)
+            self.__session.refresh(teacher_merged.user)
+
+            return TeacherModelMapper.to_domain(teacher_merged)
+
+        except SQLAlchemyError as e:
+            raise Exception(f"Database exception when updating teacher: {e}")
 
     def delete(self, id: int):
         pass

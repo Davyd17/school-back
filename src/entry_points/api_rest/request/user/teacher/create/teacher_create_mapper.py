@@ -1,10 +1,6 @@
-from typing import cast
-
-from pydantic import EmailStr
-
 from domain.entities.user.teacher import Teacher
 from entry_points.api_rest.request.role.request.role_request_mapper import RoleRequestMapper
-from entry_points.api_rest.request.user.teacher.teacher_create_request import TeacherCreateRequest
+from entry_points.api_rest.request.user.teacher.create.teacher_create_request import TeacherCreateRequest
 
 
 class TeacherCreateMapper:

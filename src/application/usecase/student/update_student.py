@@ -21,7 +21,7 @@ class UpdateStudent(StudentUseCase):
             if value is not None:
                 setattr(student_found, key, value)
 
-        return self.repository.update(id, student_found)
+        return self.repository.update(student_found)
 
         
 
